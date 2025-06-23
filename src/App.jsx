@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
-import Store from './components/store';
+import Products from './components/Products';
 import ProductDetail from './components/ProductDetail';
 import { CartProvider } from './contexts/CartContext';
 import Footer from './components/Footer';
@@ -23,7 +23,7 @@ function App() {
             element={
               <>
                 <Home />
-                <Store />
+                <Products />
                 <Champhions />
                 <Triomphe />
               </>
