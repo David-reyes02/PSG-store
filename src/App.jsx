@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import Products from './components/Products';
@@ -30,10 +30,14 @@ function App() {
             }
           />
           <Route path="/producto/:id" element={<ProductDetail />} />
+
+          {/* Redireccionar /cancel y /success a la página principal */}
+          <Route path="/cancel" element={<Navigate to="/" replace />} />
+          <Route path="/success" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
-      <Footer/>
 
+      <Footer />
     </CartProvider>
   );
 }
