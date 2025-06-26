@@ -6,12 +6,16 @@
   text-decoration: none;
 }
 
+body {
+  padding-top: 65px;
+}
+
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: rgb(241, 241, 241);
+  background: rgb(255, 255, 255);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgb(202, 208, 241);
   padding: 0px 7%;
@@ -96,7 +100,7 @@ section {
 
 .home {
   display: flex;
-  margin-top: 60px;
+  margin-top: 0px;
   align-items: center;
   height: 100vh;
   width: 100%;
@@ -117,17 +121,19 @@ button:hover {
   position: fixed;
   top: 0;
   right: 0;
-  width: 50vw; 
+  width: 35vw; 
   height: 100vh;
   background: white;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
   z-index: 1002;
   padding: 20px;
-  overflow-y: auto;
+  overflow: hidden;
   opacity: 0;
   transform: translateX(100%);
   pointer-events: none;
   transition: transform 0.3s ease, opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .cart-dropdown.open {
@@ -152,15 +158,19 @@ button:hover {
 }
 
 .cart-items {
-  display: flex;
-  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 20px;
+  margin-bottom: 90px;
 }
 
 .cart-item {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  gap: 15px;
   margin-bottom: 20px;
+  align-items: flex-start;
+  padding: 25px;
+  border-bottom: 1px solid #ddd;
 }
 
 .cart-item img {
@@ -169,15 +179,45 @@ button:hover {
   object-fit: cover;
 }
 
-.cart-item h4 {
-  font-size: small;
-  font-weight: 300;
-  padding: 10px;
+.cart-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
 }
 
-.cart-item p {
-  margin: 4px 0;
+.cart-item-header h4 {
   font-size: 14px;
+  font-weight: 500;
+}
+
+.cart-item-meta {
+  display: flex;
+  gap: 20px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-item-details p {
+  font-size: 13px;
+  font-weight: 100;
+  margin: 2px 0;
+  color: #494949;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
 }
 
 .cart-counter {
@@ -191,22 +231,34 @@ button:hover {
   left: 92%;
 }
 
+.cart-total-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: 30vw;
+  background: white;
+  padding: 10px 20px;
+  z-index: 1003;
+}
+
 .cart-total {
-  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
   font-size: 18px;
   font-weight: bold;
-  text-align: center;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .pay-button {
-  margin-top: 3%;
+  width: 100%;
   background-color: #050505;
   color: white;
-  padding: 10px;
+  padding: 12px;
   border: none;
   cursor: pointer;
   border-radius: 20px;
+  font-size: 16px;
 }
 
 .cart-overlay {
@@ -226,13 +278,9 @@ button:hover {
   color: rgb(0, 0, 0);
 }
 
-/* Contenedor Principal de la Página de Producto */
 .product-detail-page {
   max-width: 1200px;
   margin: 40px auto;
-  background-color: #fff;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
   overflow: hidden;
   padding: 20px;
   display: flex;
@@ -255,7 +303,6 @@ button:hover {
   color: #555;
 }
 
-/* Sección del Producto (Imagen y Detalles) */
 .product-section {
   display: flex;
   flex-wrap: wrap;
@@ -263,7 +310,6 @@ button:hover {
   padding: 20px 0;
 }
 
-/* Galería de Imágenes (Contenedor de la Imagen Principal) */
 .image-gallery {
   flex: 1 1 40%;
   display: flex;
@@ -276,11 +322,8 @@ button:hover {
   max-width: 90%;
   height: auto;
   border-radius: 10px;
-  border: 1px solid #eee;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
-/* Detalles del Producto (Contenedor de la Información a la Derecha) */
 .product-details {
   flex: 10%;
   padding-left: 20px;
@@ -312,7 +355,6 @@ button:hover {
   font-size: 15px;
 }
 
-/* Selector de Talle */
 .size-selector {
   margin-bottom: 20px;
 }
@@ -510,56 +552,59 @@ button:hover {
 }
 
 .parent {
-  display: grid;
-  grid-template-columns: 0.5fr repeat(3, 1fr) 0.5fr repeat(2, 1fr);
-  grid-template-rows: repeat(2, 0.5fr) 4fr repeat(2, 0.5fr);
-  gap: 0;
-  height: 590px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(9, 29, 122, 1) 28%, rgba(217, 37, 13, 1) 100%);
+  padding: 3rem 1rem;
+  gap: 2rem;
   margin-bottom: 100px;
 }
 
 .div1 {
-  grid-area: 1 / 1 / 6 / 8; 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, rgba(9, 29, 122, 1) 28%, rgba(217, 37, 13, 1) 100%);
+  gap: 2rem;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 2rem 1rem;
 }
 
 .div2 {
+  flex: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 400px;
-  width: 300px;
+  align-items: center;
+  max-width: 400%;
 }
-  
+
 .div2 img {
-  max-width: 240%;
-  height: 120%;
-  margin-left: 150%;
-  margin-top: 20%;
+  max-width: 700px;
+  height: auto;
+  object-fit: contain;
 }
 
 .products-container {
+  flex: 2;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
-  margin-top: -25%;
-  margin-left: 56%;
 }
 
-.div3,
-.div4 {
+.div3, .div4 {
   background-color: #fff;
   padding: 1rem;
+  width: 240px;
+  height: auto;
   box-sizing: border-box;
-  height: 85%;
-  width: 245px; /* ancho fijo para que queden parejos */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  text-align: center;
 }
 
 .collection {
@@ -742,10 +787,14 @@ button:hover {
   .hamburger-icon {
     display: block; 
   }
+
+  header .logo img {
+    width: 80px;;
+    height: 70px;
+  }
   
   .navbar {
-    position: fixed;
-    top: 80px;
+    top: 70px;
     left: 0;
     right: 0;
     background-color: white;
@@ -754,6 +803,7 @@ button:hover {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
+    z-index: 1000;
   }
 
   .navbar.open {
@@ -778,52 +828,76 @@ button:hover {
   }
 
   .cart-dropdown {
-    left: 16%; 
-    transform: translateY(-50%); 
-    max-width: 360px;
-  }
-
-  .cart-dropdown {
-    width: 100%;
+    left: 10%;
     padding: 15px;
   }
 
-  .cart-total {
-    text-align: left;
+  .cart-item {
+    margin-top: 10%;
+    padding: 5px;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-bottom: 0%;
   }
 
+  .cart-item img {
+    width: 75px;
+  }
+
+  .cart-item-details h4,
+  .cart-item-details p {
+    font-size: 12px;
+  }
+
+  .remove-btn {
+    font-size: 15px;
+  }
+
+  .cart-total-container {
+    max-width: 100%;
+    padding: 10px 15px;
+  }
+  
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  
   .pay-button {
     width: 100%;
+    padding: 12px;
+    border: none;
+    font-size: 15px;
   }
 
   .cart-overlay {
     margin-top: 0%;
   }
 
-  .cart-item {
-    margin-top: -20px;
-  }
-
-  .cart-item h4{
-    padding: 30px;
-  }
-  
   .cart-counter {
-    background: rgb(0, 0, 0);
-    color: white;
-    border-radius: 50%;
-    padding: 5px 5px;
-    font-size: 12px;
     position: absolute;
-    top: 15px;
-    left: 90%;
-  }
-
-  .icons {
-    padding: 20px;
+    top: 0px;
+    right: 0px;
+    transform: translate(-30%, -50%);
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 10px;
+    line-height: 1;
     display: flex;
-    gap: 4px;
-    align-items: center;
+    justify-content: center;
+  }  
+  
+  .icons a {
+    position: relative;
+    font-size: 22px; 
+    color: black;
+    cursor: pointer;
+    padding: 0px;
+    display: block;
   }
 
   .home {
@@ -831,7 +905,6 @@ button:hover {
     background-position: center top;
     background-size: cover;
     height: 650px;
-    margin-top: 9%;
     background-image: url(https://usastore.psg.fr/content/ws/all/09de8143-e1b1-4cff-b121-d0f0ec3f9173__640X980.png?w=640);
   }
 
@@ -846,7 +919,7 @@ button:hover {
     flex-direction: column;
     display: flex;
     align-items: center;
-    width: 95%;
+    width: 100%;
     padding: 1rem 0;
   }
 
@@ -893,50 +966,33 @@ button:hover {
     padding: 8px;
   }
 
-  .parent {
+  .div1 {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Imagen arriba, productos abajo */
     align-items: center;
-    width: 100%;
-    height: auto;
-    background: linear-gradient(90deg, rgba(9, 29, 122, 1) 28%, rgba(217, 37, 13, 1) 100%);
-    padding: 1rem;
-  }
-
-  .div1, .div2{
-    width: 100%;
-    display: flex;
     justify-content: center;
-    align-items: center;
+    width: 100%;
     padding: 1rem;
-    height: auto;
+    gap: 2rem;
   }
 
   .div2 img {
-    max-width: 120%;
+    max-width: 110%;
     margin: 0;
   }
   
   .products-container {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
-    gap: 2rem;
+    gap: 1.5rem;
+    flex-wrap: wrap; 
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 400px;
   }
   
   .div3, .div4 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 1rem;
-    width: 55%;
-    background-color: #fff;
-    padding: 1rem;
-    box-sizing: border-box;
+    padding: 1rem; 
+    max-width: 160px;
   }
   
   .product-wrapper {
@@ -949,15 +1005,24 @@ button:hover {
   }
   
   .product-wrapper img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+    width: 150%;
+    margin-left: -20%;
   }
   
-  .product-wrapper h4,
-  .product-wrapper p {
-    margin: 0.5rem 0 0 0;
+  .product-wrapper h4 {
+    margin: 3rem 0 0 0;
     text-align: left;
+    font-size: 16px;
+    white-space: nowrap;      
+    overflow: hidden;       
+    text-overflow: ellipsis; 
+    width: 130%;
+    display: block;
+    margin-left: -10%;
+  }
+
+  .product-wrapper p {
+    margin-left: -10%;
   }
   
   .product-title-overlay {
@@ -966,20 +1031,17 @@ button:hover {
     margin: 0;
   }
   
-
   .collection {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    margin-top: 30px;
     margin-bottom: 30px;
     padding: 0 10px;
+    gap: 20px;
   }
 
   .collection img {
     width: 100%;
-    max-width: 400px;
     height: auto;
   }
 

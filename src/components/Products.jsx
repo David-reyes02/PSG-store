@@ -53,7 +53,7 @@ const Products = () => {
             <div
               className="carousel-card"
               key={product.id}
-              onClick={() => navigate(`/producto/${product.id}`)}
+              onClick={() => window.location.href = `/producto/${product.id}`}
               style={{ cursor: 'pointer' }}
             >
               <img src={product.img} alt={product.nameProduct} />
