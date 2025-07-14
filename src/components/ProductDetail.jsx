@@ -7,7 +7,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [allProducts, setAllProducts] = useState([]);
-  const [talle, setTalle] = useState('M');
+  const [talle, setTalle] = useState('');
   const [cantidad, setCantidad] = useState(1);
   const { addToCart } = useCart();
   const navigate = useNavigate();
@@ -53,7 +53,6 @@ const ProductDetail = () => {
 
         <div className="product-details">
           <h1 className="product-name">{product.nameProduct}</h1>
-          <p className="product-description">{product.description || 'Sin descripción'}</p>
           <p className="product-price">Precio: ${product.price.toFixed(2)}</p>
 
           <p className="availability">En stock</p>
@@ -75,14 +74,19 @@ const ProductDetail = () => {
           </div>
 
           <div className="quantity-selector">
-            <input
-              id="cantidad"
-              type="number"
-              min="1"
-              value={cantidad}
-              onChange={e => setCantidad(Number(e.target.value))}
-              className="quantity-input"
-            />
+          <select
+            id="cantidad"
+            value={cantidad}
+            onChange={(e) => setCantidad(Number(e.target.value))}
+            className="quantity-dropdown"
+          >
+            {[...Array(10)].map((_, i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1}
+              </option>
+            ))}
+          </select>
+
 
             <button
               onClick={handleAddToCart}
@@ -111,7 +115,10 @@ const ProductDetail = () => {
               <div
                 key={prod.id}
                 className="carousel-card"
-                onClick={() => window.location.href = `/producto/${prod.id}`}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  navigate(`/producto/${prod.id}`);
+                }}
 
               >
                 <img src={prod.img} alt={prod.nameProduct} />
@@ -122,6 +129,20 @@ const ProductDetail = () => {
           </div>
           <button className="arrow right" onClick={scrollRight}>›</button>
         </div>
+      </div>
+
+      <div className="video-section">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="promo-video"
+          style={{ width: '100%', maxHeight: '500px', objectFit: 'cover', marginTop: '40px' }}
+        >
+         <source src="/video/trailer-kit.mp4" type="video/mp4" /><source src="video\trailer-kit.mp4" type="video/mp4" />
+          Tu navegador no soporta el video.
+        </video>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import ProductDetail from './components/ProductDetail';
 import { CartProvider } from './contexts/CartContext';
 import Footer from './components/Footer';
 import Champhions from './components/Champhions';
-import Triomphe from './components/Triomphe';
+import Collection from './components/Collection';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,7 +25,7 @@ function App() {
                 <Home />
                 <Products />
                 <Champhions />
-                <Triomphe />
+                <Collection />
               </>
             }
           />

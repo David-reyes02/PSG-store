@@ -15,7 +15,7 @@ const Products = () => {
         setProducts(todos);
 
         const destacados = todos.filter((product, i) =>
-          [5, 6, 7, 8, 9, 10, 11].includes(i) &&
+          [7, 8, 9, 10, 11, 12].includes(i) &&
           product &&
           product.img &&
           product.nameProduct &&
@@ -53,7 +53,10 @@ const Products = () => {
             <div
               className="carousel-card"
               key={product.id}
-              onClick={() => window.location.href = `/producto/${product.id}`}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                navigate(`/producto/${product.id}`);
+              }}
               style={{ cursor: 'pointer' }}
             >
               <img src={product.img} alt={product.nameProduct} />
@@ -64,6 +67,26 @@ const Products = () => {
         </div>
 
         <button className="arrow right" onClick={scrollRight}>›</button>
+      </div>
+
+      {/* Video debajo del carrusel */}
+      <div className="video-section">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="promo-video"
+          style={{
+            width: '100%',
+            maxHeight: '600px',
+            objectFit: 'cover',
+            marginTop: '40px'
+          }}
+        >
+          <source src="video/trailer-kit.mp4" type="video/mp4" />
+          Tu navegador no soporta el video.
+        </video>
       </div>
     </div>
   );

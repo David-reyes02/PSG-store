@@ -27,20 +27,9 @@ const Footer = () => {
             <h4>Seguridad online</h4>
             <ul className="enlaces">
               <li><a href="#">Compra segura</a></li>
+              <li><a href="#">Políticas de Cambios y Devoluciones</a></li>
               <li><a href="#">Envío y entrega</a></li>
               <li><a href="#">Plazo de devolución de 90 días</a></li>
-            </ul>
-          </div>
-
-          {/* Columna 3 */}
-          <div className="footer-col">
-            <h4>Centro de Ayuda</h4>
-            <ul className="enlaces">
-              <li><a href="#">Políticas de Cambios y Devoluciones</a></li>
-              <li><a href="#">Política de privacidad</a></li>
-              <li><a href="#">Preguntas Frecuentes</a></li>
-              <li><a href="#">Términos y Condiciones</a></li>
-              <li><a href="#">Contacto</a></li>
             </ul>
           </div>
 
