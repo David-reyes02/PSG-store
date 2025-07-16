@@ -656,7 +656,7 @@ button:hover {
 }
 
 .div2 img {
-  max-width: 750px;
+  max-width: 695px;
   height: auto;
   object-fit: cover;
 }
@@ -666,13 +666,13 @@ button:hover {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
 }
 
 .div3, .div4 {
   background-color: #fff;
   padding: 0rem;
-  width: 240px;
+  width: 250px;
   height: auto;
   box-sizing: border-box;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -859,6 +859,10 @@ button:hover {
 }
 
 @media (max-width: 786px) {
+  body {
+    overscroll-behavior-y: contain;
+  }  
+
   .top-bar .search-bar {
     display: none;
   }
@@ -937,6 +941,8 @@ button:hover {
   .cart-dropdown {
     left: 10%;
     padding: 15px;
+    padding-bottom: calc(30px + env(safe-area-inset-bottom));
+    overflow-y: auto;
   }
 
   .cart-item {
@@ -962,7 +968,8 @@ button:hover {
 
   .cart-total-container {
     max-width: 100%;
-    padding: 90px 15px;
+    padding: 30px 15px;
+    padding-bottom: calc(30px + env(safe-area-inset-bottom));
   }
   
   .cart-total {
@@ -979,6 +986,7 @@ button:hover {
     padding: 12px;
     border: none;
     font-size: 15px;
+    margin-bottom: env(safe-area-inset-bottom, 20px);
   }
 
   .cart-overlay {
@@ -1127,7 +1135,7 @@ button:hover {
     display: block;
     margin-left: -20%;
     display: -webkit-box;
-    -webkit-line-clamp: 3;   /* Mostrar 2 líneas antes de cortar */
+    -webkit-line-clamp: 3;  
     -webkit-box-orient: vertical;
     white-space: normal;
   }
